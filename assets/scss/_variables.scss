@@ -1,16 +1,28 @@
+// Disruptive Bros. brand colors
+$db-dark-green: #13322B; // Pantone 627 C
+$db-light-green: #00534C; // Pantone 330 C
+$db-red: #BA0C2F; // Pantone 200 C
+$db-gray-1: #6E6259;
+$db-gray-2: #83786F;
+$db-gray-3: #968C83;
+$db-gray-4: #ACA39A;
+$db-gray-5: #BFB8AF;
+$db-gray-6: #D7D2CB;
+$db-black: #292926
+
 //site color variables
-$body-color: #13322B;
-$primary-color: #00534C;
-$secondary-color: #BA0C2F;
-$text-color: #9D9EA5;
-$text-color-dark: #00113E;
+$body-color: $db-gray-6;
+$primary-color: $db-dark-green;
+$secondary-color: $db-light-green;
+$text-color: $db-gray-1;
+$text-color-dark: $db-black;
 $site-ease: cubic-bezier(0.36, 0.03, 0, 0.91);
-$gray: #F7F9FF;
-$dark-gray: #646569;
+$gray: $db-gray-5;
+$dark-gray: $db-gray-3;
 
 // solid colors
-$white: #fff;
-$black: #000;
+$white: $db-gray-6;
+$black: $db-black;
 
 // Font Variables
 $primary-font: 'Josefin Sans', sans-serif;
