@@ -9,25 +9,129 @@
             <p>{{ .subtitle }}</p>
           </div>
         </div>
-        {{ range first 4 (where $.Site.RegularPages "Type" "portfolio") }}
-        <div class="col-lg-6 col-md-10 mx-auto">
-          <div class="site-project-item">
-            <div class="site-project-item-thumb">
-              <img src="{{ .Params.Image | absURL }}" alt="project-thumb">
-            </div>
-            <div class="site-project-item-content">
-              <span>{{ delimit .Params.category ", " }}</span>
-              <h3>{{ .Title }}</h3>
-              <a href="{{ .Permalink }}" class="read-more">{{ .Site.Params.portfolio.view_project }}</a>
+        {{ range first 4 (where $.Site.RegularPages "Type" "portfolio" )}}
+          {{ if ne .File.BaseFileName "_index" }}
+          <div class="col-lg-6 col-md-10 mx-auto">
+            <div class="site-project-item" onclick="openModal('{{ .File.BaseFileName }}')" style="cursor: pointer;">
+              <div class="site-project-item-thumb">
+                <img src="{{ .Params.image | absURL }}" alt="project-thumb">
+              </div>
+              <div class="site-project-item-content">
+                <span>{{ delimit .Params.category ", " }}</span>
+                <h3>{{ .Title }}</h3>
+              </div>
             </div>
           </div>
-        </div>
+          {{ end }}
         {{ end }}
         <div class="col-12 text-center text-lg-left">
-          <a href="portfolio" class="site-project-cta">{{ .Site.Params.portfolio.more_works }}</a>
+          <a href="portfolio" class="site-project-cta">{{ .more_works }}</a>
         </div>
       </div>
     </div>
   </section>
   {{ end }}
 {{ end }}
+
+<!-- Hidden Content for Each Project -->
+{{ range sort (where $.Site.RegularPages "Type" "portfolio") "Weight" "asc" }}
+  {{ if ne .File.BaseFileName "_index" }}
+  <div id="project-{{ .File.BaseFileName }}" class="hidden-project-content" style="display:none;">
+    <div class="project-title">{{ .Title }}</div>
+    <div class="project-subtitle">{{ .Params.subtitle }}</div>
+    <div class="project-description">{{ .Content | safeHTML }}</div>
+    <div class="project-images">
+      {{ range .Params.project_images }}
+      <img src="{{ . | absURL }}" alt="project image" style="max-width:100%;height:auto;">
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+{{ end }}
+
+<!-- Modal Structure -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modalTitle" class="h2"></div>
+    <div id="modalSubtitle" class="h3"></div>
+    <div id="modalContent" class="modal-body"></div>
+    <div id="modalImages" class="modal-images"></div>
+  </div>
+</div>
+
+<script>
+function openModal(projectId) {
+  var projectContent = document.getElementById('project-' + projectId);
+  if (projectContent) {
+    document.getElementById('modalTitle').innerHTML = projectContent.querySelector('.project-title').innerHTML;
+    document.getElementById('modalSubtitle').innerHTML = projectContent.querySelector('.project-subtitle').innerHTML;
+    document.getElementById('modalContent').innerHTML = projectContent.querySelector('.project-description').innerHTML;
+    document.getElementById('modalImages').innerHTML = projectContent.querySelector('.project-images').innerHTML;
+  }
+
+  var modal = document.getElementById('projectModal');
+  modal.style.display = "block";
+
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+</script>
+
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  position: absolute; /* Change from float to absolute positioning */
+  top: 10px; /* Adjust as needed */
+  right: 15px; /* Adjust as needed */
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer; /* Ensures the cursor changes to a pointer when hovering over the icon */
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-project-item:hover {
+  /* Add hover effects as needed */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.modal-images img {
+  max-width: 100%;
+  height: auto;
+}
+</style>
