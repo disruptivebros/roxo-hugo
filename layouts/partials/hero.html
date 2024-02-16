@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <div class="site-hero-content text-center">
-            <h6>{{ .tagline }}</h6>
-            <h1>
+            <h6 class="hero-title">{{ .tagline }}</h6>
+            <h1 class="hero-title">
               {{ .heading }}
             </h1>
             <ul class="site-hero-content-buttons">
@@ -20,7 +20,7 @@
                   </span>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{ .secondary_button_url | absURL }}" class="btn btn-primary">
                   <span class="btn-area">
                     <span data-text="{{ .secondary_button }}">
@@ -28,15 +28,12 @@
                     </span>
                   </span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <a href="#counter" class="site-hero-scroll scroll-to">
-      <img src="{{ "images/arrow-down.svg" | absURL }}" alt="arrow-down">
-    </a>
   </section>
   {{ "<!-- Site Hero End -->" | safeHTML }}
   {{ end }}

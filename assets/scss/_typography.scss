@@ -19,6 +19,9 @@ p{
 
 h1{
   font-size: 60px;
+  &.hero-title{
+    color: $white;
+  }
 }
 
 h2{
@@ -40,4 +43,7 @@ h5{
 h6{
   font-size: 15px;
   font-weight: 300;
+  &.hero-title{
+    color: $white;
+  }
 }

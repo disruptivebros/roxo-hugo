@@ -75,3 +75,7 @@
     background: darken($color: $secondary-color, $amount: 10);
   }
 }
+
+.btn-soon {
+  cursor: not-allowed;
+}

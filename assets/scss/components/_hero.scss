@@ -4,7 +4,8 @@
   background-size: cover;
   background-position: center center;
   display: flex;
-  align-items: center;
+  align-items: end;
+  padding-bottom: 75px;
   justify-content: center;
   @include desktop{
     height: auto;
