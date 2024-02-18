@@ -1,6 +1,6 @@
 .site-contact{
   padding: 150px 0 100px;
-  background: $gray;
+  background: $body-color;
   @include mobile{
     padding: 120px 0 100px;
   }
@@ -10,7 +10,7 @@
       font-size: 40px;
     }
     span{
-      color: $primary-color;
+      color: $db-red;
     }
   }
   &-form{

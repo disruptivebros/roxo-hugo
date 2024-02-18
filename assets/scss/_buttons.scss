@@ -61,10 +61,10 @@
 }
 
 .btn-primary{
-  background: $primary-color;
+  background: $db-red;
   color: $white;
   &:hover{
-    background: darken($color: $primary-color, $amount: 10);
+    background: darken($color: $db-red, $amount: 10);
   }
 }
 
@@ -77,5 +77,13 @@
 }
 
 .btn-soon {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
+}
+
+.text-soon {
+  font-weight: 100;
+}
+
+.no-hover{
+  pointer-events: none;
 }

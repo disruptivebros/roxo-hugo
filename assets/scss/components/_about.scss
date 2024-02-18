@@ -48,4 +48,16 @@
       margin-bottom: 0;
     }
   }
+  &-story{
+    @include desktop{
+      width: 100%;
+      padding: 0 38px;
+    }
+    p{
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+  }
+  
 }
