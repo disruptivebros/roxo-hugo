@@ -6,9 +6,7 @@
         <div class="col-lg-8 mx-auto">
           <div class="site-about-wrapper">
             <div class="site-about-story">
-              <p>
-                {{ .text | safeHTML }}
-              </p>
+              {{ .text | markdownify }}
             </div>
           </div>
         </div>

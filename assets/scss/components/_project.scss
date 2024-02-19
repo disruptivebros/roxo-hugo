@@ -215,6 +215,11 @@
         }
       }
     }
+    &-price {
+      p{
+        color: $db-red
+      }
+    }
     &-description{
       margin-bottom: 50px;
       p{

@@ -8,6 +8,9 @@
           <h1>
             {{ .Title }}
           </h1>
+          <div class="site-project-single-price">
+            <p>{{ .Params.duration }} | {{ .Params.Price }}</p>
+          </div>
           <div class="site-project-single-description">
             {{ .Content }}
           </div>
@@ -16,8 +19,8 @@
             <img src="{{ . | absURL }}" alt="project image">
             {{ end }}
           </div>
-          {{ if .NextInSection }}
-<!--           <div class="site-project-single-action">
+<!--           {{ if .NextInSection }}
+          <div class="site-project-single-action">
             <a href="{{.NextInSection.Permalink}}">
               <span class="link-area">
                 <span data-text="Next Project">
@@ -26,8 +29,8 @@
               </span>
               <img src="{{ "images/to-top.svg" | absURL }}" alt="next project">
             </a>
-          </div> -->
-          {{ end }}
+          </div>
+          {{ end }} -->
         </div>
       </div>
     </div>

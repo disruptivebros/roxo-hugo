@@ -3,8 +3,17 @@
   padding: 100px 0;
   &-logo{
     margin-bottom: 50px;
+    float: left;
     @include mobile{
       text-align: center;
+      float:none
+    }
+    img{
+      max-height: 54px;
+      width: 100%;
+      @include desktop{
+      max-height: 40px;
+      }
     }
   }
   &-widget{
