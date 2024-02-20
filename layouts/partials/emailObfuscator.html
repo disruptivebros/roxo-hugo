@@ -1,0 +1,37 @@
+<!-- layouts/partials/emailObfuscator.html -->
+<div id="email-container-{{ .uniqueId }}">
+    <a href="#" id="show-email-link-{{ .uniqueId }}" class="{{ .cssClass }}">Show Email</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var containerId = 'email-container-{{ .uniqueId }}';
+    var emailContainer = document.getElementById(containerId);
+    var linkId = 'show-email-link-{{ .uniqueId }}';
+    var link = document.getElementById(linkId);
+
+    link.onclick = function(event) {
+        event.preventDefault();
+        console.log('Link clicked, attempting to launch verification...');
+
+        if (!emailContainer.querySelector('.cf-turnstile')) {
+            console.log('Creating Turnstile widget...');
+            var turnstileWidget = document.createElement('div');
+            turnstileWidget.id = 'turnstile-widget-' + '{{ .uniqueId }}';
+            emailContainer.appendChild(turnstileWidget);
+
+            window.turnstile.render('#' + turnstileWidget.id, {
+                sitekey: '0x4AAAAAAASRdL6XmOBTKpHD', // Replace with your actual site key
+                callback: function(token) {
+                    console.log('Verification passed, token received:', token);
+                    var actualEmail = '{{ .email }}';
+                    var cssClass = '{{ .cssClass }}';
+                    emailContainer.innerHTML = '<a href="mailto:' + actualEmail + '" class="' + cssClass + '"">' + actualEmail + '</a>';
+                }
+            });
+        } else {
+            console.log('Turnstile widget already exists. No new widget created.');
+        }
+    };
+});
+</script>

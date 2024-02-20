@@ -53,6 +53,19 @@
         }
       }
     }
+    &-email{
+        color: $white;
+        text-decoration-color: $white;
+        transition: all 0.3s $site-ease;
+        display: block;
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+        &:hover{
+          text-emphasis: underline;
+          color: $white;
+          text-decoration-color: $white;
+        }
+    }
     &-top{
       @include mobile{
         text-align: center;

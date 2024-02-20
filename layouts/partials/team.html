@@ -20,8 +20,15 @@
               <h3>{{ .name }}</h3>
               <p>{{ .designation }}</p>
               <ul class="site-team-member-social">
-                <li><a href="mailto:{{ .email }}">{{ .email }}</a></li>
                 <li><a href="{{ .linkedin | absURL }}"><i class="fa fa-linkedin"></i></a></li>
+                <li>
+                  {{ if .email }}
+                    {{ $uniqueId := printf "%d" (now.UnixNano) }}
+                    {{ $email := .email }}
+                    {{ $cssClass := "" }}
+                    {{ partial "emailObfuscator.html" (dict "uniqueId" $uniqueId "email" $email "cssClass" $cssClass) }}
+                  {{ end }}
+                </li>
               </ul>
             </div>
           </div>

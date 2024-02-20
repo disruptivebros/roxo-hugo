@@ -17,9 +17,12 @@
               <a href="tel:{{ .phone }}">{{ .phone }}</a>
               <br>
 	    {{ end }}
-	    {{ if .email }}
-              <a href="mailto:{{ .email }}">{{ .email }}</a>
-	    {{ end }}
+      {{ if .email }}
+        {{ $uniqueId := printf "%d" (now.UnixNano) }}
+        {{ $email := .email }}
+        {{ $cssClass := "site-footer-widget-email site-footer-widget-description" }}
+        {{ partial "emailObfuscator.html" (dict "uniqueId" $uniqueId "email" $email "cssClass" $cssClass) }}
+      {{ end }}
           </p>
         </div>
       </div>
