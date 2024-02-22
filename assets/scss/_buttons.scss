@@ -94,7 +94,7 @@
 
 .verify-link {
   &-form{
-    color: $db-red !important;
+    color: $db-red;
     text-decoration: none;
     &:hover {
       color: darken($color: $db-red, $amount: 10);

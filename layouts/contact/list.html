@@ -1,4 +1,5 @@
 {{ define "main" }}
+
 {{ $uniqueId := printf "%d" (now.UnixNano) }}
 <section class="site-contact">
   <div class="container">
@@ -44,7 +45,6 @@
     </div>
   </div>
 </section>
-
 
 {{ partial "formAuthentificator.html" . }}
 
