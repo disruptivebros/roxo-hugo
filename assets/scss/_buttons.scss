@@ -94,11 +94,11 @@
 
 .verify-link {
   &-form{
-    color: $db-red;
+    color: $db-red !important;
     text-decoration: none;
     &:hover {
       color: darken($color: $db-red, $amount: 10);
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 }
