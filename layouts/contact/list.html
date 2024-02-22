@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $uniqueId := printf "%d" (now.UnixNano) }}
 <section class="site-contact">
   <div class="container">
     <div class="row">
@@ -10,33 +11,32 @@
       <div class="col-lg-6 ml-auto">
         <div class="site-contact-form">
           <h4>{{ .Params.form_heading }}</h4>
-          <form id="contact-form" action="{{ .Site.Params.fabform }}" method="post">
+          <form id="contact-form-{{ $uniqueId }}" action="{{ .Site.Params.fabform }}" method="post">
             <div class="row">
               <div class="col-lg-6">
-                <input type="text" class="form-control" name="first-name" id="first-name" placeholder="{{ .Site.Params.contactForm.placeholder_first_name }}" required>
+                <input type="text" class="form-control" name="first-name" id="first-name-{{ $uniqueId }}" placeholder="{{ .Site.Params.contactForm.placeholder_first_name }}" required>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" name="last-name" id="last-name" placeholder="{{ .Site.Params.contactForm.placeholder_last_name }}" required>
+                <input type="text" class="form-control" name="last-name" id="last-name-{{ $uniqueId }}" placeholder="{{ .Site.Params.contactForm.placeholder_last_name }}" required>
               </div>
               <div class="col-lg-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="{{ .Site.Params.contactForm.placeholder_email }}" required>
+                <input type="email" class="form-control" name="email" id="email-{{ $uniqueId }}" placeholder="{{ .Site.Params.contactForm.placeholder_email }}" required>
               </div>
               <div class="col-lg-6">
-                <input type="text" class="form-control" name="company" id="company" placeholder="{{ .Site.Params.contactForm.placeholder_company }}">
+                <input type="text" class="form-control" name="company" id="company-{{ $uniqueId }}" placeholder="{{ .Site.Params.contactForm.placeholder_company }}">
               </div>
               <div class="col-12">
-                <textarea class="form-control" id="message" name="message" rows="6" placeholder="{{ .Site.Params.contactForm.placeholder_message }}"></textarea>
+                <textarea class="form-control" id="message-{{ $uniqueId }}" name="message" rows="6" placeholder="{{ .Site.Params.contactForm.placeholder_message }}"></textarea>
               </div>
-              <div class="col-12">
-                <button formtarget="_blank" type="submit" class="btn btn-primary" id="contact-form-button">
-                  <span class="btn-area">
-                    <span data-text="{{ .Site.Params.contactForm.send_message }}">
-                      {{ .Site.Params.contactForm.send_message }}
-                    </span>
-                  </span>
+              <div class="col-12 d-flex flex-column flex-lg-row justify-content-between align-items-center mt-3">
+                <div id="turnstile-widget-placeholder-{{ $uniqueId }}" style="display: none;" class="mb-2 mb-lg-0 align-items-center d-flex"></div>
+                <a href="#" id="verify-human-link-{{ $uniqueId }}" class="verify-link-form" onclick="loadTurnstileWidget('{{ $uniqueId }}'); return false;" class="mb-2 mb-lg-0" style="cursor: pointer;">Click to verify you're a human</a>
+                <button type="submit" class="btn btn-primary" id="contact-form-button-{{ $uniqueId }}" disabled>
+                  {{ .Site.Params.contactForm.send_message }}
                 </button>
               </div>
-              <p id="contact-form-status"></p>
+              <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response-{{ $uniqueId }}" value="">
+              <p id="contact-form-status-{{ $uniqueId }}"></p>
             </div>
           </form>
         </div>
@@ -44,4 +44,8 @@
     </div>
   </div>
 </section>
+
+
+{{ partial "formAuthentificator.html" . }}
+
 {{ end }}
