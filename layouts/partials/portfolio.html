@@ -1,4 +1,4 @@
-{{ with .Site.Params.portfolio }}
+{{ with .Site.Params.services }}
   {{ if .enable }}
   <section class="site-project" id="project">
     <div class="container">
@@ -9,9 +9,10 @@
             <p>{{ .subtitle }}</p>
           </div>
         </div>
-        {{ range first 4 (where $.Site.RegularPages "Type" "portfolio") }}
+        {{ range first 4 (where $.Site.RegularPages "Type" "services") }}
         <div class="col-lg-6 col-md-10 mx-auto">
-          <a href="{{ .Permalink }}" class="portfolio-tile-link">
+          <!-- Check for menu_target and use it as href, otherwise fallback to .Permalink -->
+          <a href="{{ with .Params.menu_target }}{{ . | absURL }}{{ else }}{{ .Permalink }}{{ end }}" class="portfolio-tile-link">
             <div class="site-project-item">
               <div class="site-project-item-thumb">
                 <img src="{{ .Params.Image | absURL }}" alt="project-thumb">
