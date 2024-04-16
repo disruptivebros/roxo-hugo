@@ -8,6 +8,8 @@
           <h1>
             {{ .Title | safeHTML }}
           </h1>
+          <p>Our workshops are meticulously designed to guide participants through the process of creating and implementing an integrated marketing strategy. During these sessions, you'll learn not just the 'what' but the 'how' of applying crucial marketing methodologies and drafting essential documents. We take pride in our interactive teaching approach, where we don't just lecture—we engage, consult, and challenge.</p>
+          <p>Our goal is to empower you to independently perform the techniques we discuss and write the strategies we outline, all while providing expert guidance to ensure you're on the path to success. By the end of each workshop, you will have the knowledge and tools necessary to execute what you've learned, driving tangible results for your business. We're here to teach, guide, and help you achieve the outcomes you desire.</p>
         </div>
       </div>
       <div class="col-lg-4">
@@ -23,7 +25,7 @@
 <section class="site-project" id="project">
   <div class="container">
     <div class="row">
-      {{ range (.Paginator 4).Pages }}
+      {{ range (.Paginator 6).Pages }}
       <div class="col-lg-6 col-md-10 mx-auto">
         <a href="{{ .Permalink }}" class="portfolio-tile-link">
           <div class="site-project-item">

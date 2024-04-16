@@ -220,6 +220,12 @@
         color: $db-red
       }
     }
+    &-disclaimer {
+      p{
+        color: $text-color;
+        font-style: italic;        
+      }
+    }
     &-description{
       margin-bottom: 50px;
       p{
