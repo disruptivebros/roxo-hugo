@@ -1,5 +1,4 @@
 {{ define "main" }}
-
 {{ $uniqueId := printf "%d" (now.UnixNano) }}
 <section class="site-contact">
   <div class="container">
@@ -31,8 +30,7 @@
               </div>
               <div class="col-12 d-flex flex-column flex-lg-row justify-content-between align-items-center mt-3">
                 <div id="turnstile-widget-placeholder-{{ $uniqueId }}" style="display: none;" class="mb-2 mb-lg-0 align-items-center d-flex"></div>
-                <a href="#" id="verify-human-link-{{ $uniqueId }}" class="verify-link-form" onclick="loadTurnstileWidget('{{ $uniqueId }}'); return false;" class="mb-2 mb-lg-0" style="cursor: pointer;">Click to verify you're a human</a>
-                <button type="submit" class="btn btn-primary" id="contact-form-button-{{ $uniqueId }}" disabled>
+                <button type="button" class="btn btn-primary" id="contact-form-button-{{ $uniqueId }}" onclick="submitFormWithVerification('{{ $uniqueId }}')">
                   {{ .Site.Params.contactForm.send_message }}
                 </button>
               </div>
